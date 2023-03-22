@@ -10,6 +10,7 @@ def get_data() -> list[list[str]]:
 
     data = []
     reader = csv.reader(csv_data)
+    next(reader)
     for row in reader:
-        data.append(row)
+        data.append((row[0], row[1]))
     return data
