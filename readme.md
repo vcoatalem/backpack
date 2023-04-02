@@ -29,7 +29,7 @@ Chaque structure de données a ses caractéristiques propres:
 
     > Lorsqu'on manie une structure de données en algo, c'est une abstraction au dessus d'une implémentation bas-niveau concrète
 
-    
+
 * L'exécution des opérations.
   * Par exemple, prenons l'opération "Accéder à un élément d'une liste par un indice". La manière dont cette opération est menée changera en fonction de l'implémentation sous-jacente: 
     * Si j'utilise un ArrayList, qui est en réalité fonctionnellement similaire à un tableau, je peux accéder aux éléments par indice en temps constant (random access). On parle de **complexité** O(1): l'action se fait en instantané, quel que soit la taille de la liste.
@@ -51,5 +51,14 @@ Chaque structure de données a ses caractéristiques propres:
 
 Une chose qui rassemble toutes les structures de données : elle contiennent un ensemble d'éléments dénombrables. On note `N` le note nombre d'éléments dans notre collection.
 
-J'écris un algorithme A qui effectue un traitement sur une structure de données de taille N.
+Du point de vue d'un CPU, un algorithme peut être vu comme un ensemble d'opérations `X` à effectuer. Chacune de ces opérations représente un temps d'exécution (le temps que les transistors interagissent entre eux), l'enjeu de l'optimisation du temps d'exécution est donc de maintenir `X` aussi bas que possible.
+
+
+Empiriquement, on remarque que dans la plupart des algorithmes effectués sur des structures de données, `X` croît proportionnellement avec `N`.
+
+Par exemple: si je cherche une valeur dans une liste de `N` entiers non-triés, je vais commencer par regarder si le premier entier de la liste est celui que je cherche. Si oui, je le retourne. Si non, je passe au suivant. Dans le pire cas (l'élément que je cherche est le dernier de la liste) je dois donc parcourir les `N` entiers avant de trouver celui que je cherche. On dit alors que la recherche d'une valeur dans une liste non-triée a une complexité O(`N`) : dans le pire cas, cet algorithme représente `N` opérations pour mon processeur.
+
+< montrer un exemple d'un algorithme avec une complexité quadratique / exponentielle>
+
+//Il est difficile de donner le temps exact nécessaire à chaque opération (dépendant de l'architecture du CPU ainsi que de la nature de l'opération). Une bonne estimation est de dire qu'un CPU ayant une _clock speed_ de 3.0 GHz pourra effectuer environ 3 milliards d'opération par seconde. 
 
