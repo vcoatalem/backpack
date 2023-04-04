@@ -1,7 +1,8 @@
 # Le problème du sac à dos
 
 
-# Quelques bases d'algo
+
+# I. Quelques bases d'algo
 
 > Petit crash course d'algorithmie simplifié pour montrer l'enjeu de l'exercice. Ce n'est pas essentiel pour répondre à l'exercice, mais ce sont des notions intéressantes à avoir.
 
@@ -62,3 +63,17 @@ Par exemple: si je cherche une valeur dans une liste de `N` entiers non-triés, 
 
 //Il est difficile de donner le temps exact nécessaire à chaque opération (dépendant de l'architecture du CPU ainsi que de la nature de l'opération). Une bonne estimation est de dire qu'un CPU ayant une _clock speed_ de 3.0 GHz pourra effectuer environ 3 milliards d'opération par seconde. 
 
+
+
+# II. Problème
+
+### Vous êtes en train de braquer une banque, vous venez d'ouvrir la serrure du coffre fort et vous en découvrez le contenu:
+
+`N` objets ayant une valeur `V` et une masse `W`
+
+Naturellement, vous souhaitez maximiser les bénéfices de votre _opération_. Cependant, vous ne pouvez pas prendre tous les objets avec vous.
+
+Vous ne disposez que d'un sac à dos, pouvant supporter une masse `WMax`.
+
+
+### question: pour quelle combinaison d'objets je maximise la valeur de mon butin, tout en restant dans la limite `WMax` ?
