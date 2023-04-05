@@ -13,13 +13,13 @@ def read_file(filename: str) -> list[int]:
 
 def format_integer_list(filename: str, language: str) -> str:
     data: list[int] = read_file(filename)
-    if language == "python":
+    if language == "python" or language == "nodejs":
         return json.dumps(data)
     if language == "java":
         return "".join(list(map(lambda x: "add(" + str(x) + ");\n", data)))
     if language == "c++":
         return "".join(list(map(lambda x: str(x) + ",\n", data)))
 
-res = format_integer_list("./parameters/values_easy.csv", "c++")
+res = format_integer_list("./parameters/values_easy.csv", "js")
 
 print(res)
