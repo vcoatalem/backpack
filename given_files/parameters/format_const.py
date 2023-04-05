@@ -1,7 +1,7 @@
 
 import csv
 import json
-
+import sys
 
 def read_file(filename: str) -> list[int]:
     res = []
@@ -20,6 +20,7 @@ def format_integer_list(filename: str, language: str) -> str:
     if language == "c++":
         return "".join(list(map(lambda x: str(x) + ",\n", data)))
 
-res = format_integer_list("./parameters/values_easy.csv", "js")
+
+res = format_integer_list(sys.argv[1], sys.argv[2])
 
 print(res)
