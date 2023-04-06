@@ -1,16 +1,14 @@
-from python_input.from_api import get_data
+from parameters import Parameters
 from dataclasses import dataclass
 import random
 import timeit
-
-from data import easy, medium, hard
 
 
 def generate_random_tuple_list():
     return [(random.uniform(1, 100), random.uniform(1, 100)) for i in range(1000)]
 
 
-def solve_recursive(items: list[tuple[float, float]], maxWeight: float):
+def solve_recursive(params: Parameters):
     res = []
     # https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
     def knapSack(W, wt, val, n, selected: list[int]):
@@ -39,11 +37,14 @@ def solve_recursive(items: list[tuple[float, float]], maxWeight: float):
                 selected[:] = tryExcludeArray
             return max(tryInclude, tryExclude)
     
-    maxValue = knapSack(maxWeight, list(map(lambda item: float(item[0]), items)), list(map(lambda item: float(item[1]), items)), len(items), res)
+    maxValue = knapSack(params.maxWeightCapacity, params.itemWeights, params.itemValues, len(params.itemValues), res)
     return res, maxValue
 
 
-def solve_greedy(items: list[tuple[float, float]], maxWeight):
+#def solve_greedy(items: list[tuple[float, float]], maxWeight):
+def solve_greedy(params: Parameters):
+
+    items = [(params.itemWeights[i], params.itemValues[i]) for i in range(len(params.itemValues))]
 
     def heuristic(item: tuple[float, float]) -> float:
         weight = item[0]
@@ -59,14 +60,16 @@ def solve_greedy(items: list[tuple[float, float]], maxWeight):
     totalValue = 0.0
     totalWeight = 0.0
     for (idx, ratio, weight, value) in weightedIndexes:
-        if (totalWeight + weight) <= maxWeight:
+        if (totalWeight + weight) <= params.maxWeightCapacity:
             totalWeight += weight
             totalValue += value
             res += [idx]
 
     return res, totalValue, totalWeight
 
-def solve_greedy_mutate(items: list[tuple[float, float]], maxWeight, mutationRate=0.2):
+def solve_greedy_mutate(params: Parameters, mutationRate=0.2):
+
+    items = [(params.itemWeights[i], params.itemValues[i]) for i in range(len(params.itemValues))]
 
     def heuristic(item: tuple[float, float]) -> float:
         weight = item[0]
@@ -84,21 +87,19 @@ def solve_greedy_mutate(items: list[tuple[float, float]], maxWeight, mutationRat
     for (idx, ratio, weight, value) in weightedIndexes:
         if random.uniform(1, 100) < mutationRate * 100:
             continue
-        if (totalWeight + weight) <= maxWeight:
+        if (totalWeight + weight) <= params.maxWeightCapacity:
             totalWeight += weight
             totalValue += value
             res += [idx]
 
     return res, totalValue, totalWeight
 
-
-def solve_greedy_mutate_bruteforce(items: list[tuple[float, float]], maxWeight):
-
+def solve_greedy_mutate_bruteforce(params: Parameters, nTries=10000):
     bestValue = 0
     bestCombination = []
     bestWeight = 0
-    for i in range(10000):
-        res, totalValue, totalWeight = solve_greedy_mutate(items, maxWeight)
+    for i in range(nTries):
+        res, totalValue, totalWeight = solve_greedy_mutate(params)
         if totalValue > bestValue:
             bestValue = totalValue
             bestCombination = res
@@ -106,6 +107,11 @@ def solve_greedy_mutate_bruteforce(items: list[tuple[float, float]], maxWeight):
     return bestCombination, bestValue, bestWeight
 
 
+params = Parameters.easy()
+print(solve_recursive(params))
+print(solve_greedy(params))
+print(solve_greedy_mutate(params))
+print(solve_greedy_mutate_bruteforce(params, 10000))
 
 #print(solve_recursive(data3, 100))
 #print(solve_greedy(data3, 100))
