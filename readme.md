@@ -1,10 +1,8 @@
 # Pirates, Butin & Optimisation combinatoire
 
-
 ##  Contexte
 
 Vous êtes un équipage de pirates et vous venez de finir l'abordage d'un navire marchand chargé de richesses. Vous ouvrez dans la coque du navire où se trouve le butin: `N` objets ayant une valeur `V` et une masse `W`
-
 
 Naturellement, vous souhaitez maximiser les bénéfices de votre _opération_. 
 
@@ -16,16 +14,20 @@ Votre bateau ne peut en effet supporter qu'une masse `WMax`.
 
 ___
 
-## Données
+## Principe du challenge
 
-Ce repository contient un fichier avec les données d'entrées en clair, en python, java, C#, C++ et nodejs.
+Ce challenge d'algo a 3 niveaux de difficultés:
+* facile: 10 objets à traiter
+* medium: 100 objets à traiter
+* hard: 1000 objets à traiter
 
-Trois jeux de données à traiter:
-* easy : 10 objets
-* medium : 100 objets
-* hard: 1000 objets
+Et peut être réalisé dans les langages suivants:
+* python
+* java
+* c++
+* c#
+* JS (node)
 
+Le dossier "given_files" contient un fichier "parameters" pour chaque language. Ce fichier permet de générer les paramètres du problème (liste de valeurs, liste de masses, masse maximale) pour les 3 niveaux de difficultés.
 
-___
-
-##
+> évidemment, les données d'entrée sont les même pour tous les langages.
