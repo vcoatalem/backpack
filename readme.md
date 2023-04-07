@@ -33,7 +33,28 @@ Et peut être réalisé dans les langages suivants:
 * c#
 * JS (node)
 
-Le dossier "given_files" contient un fichier "parameters" pour chaque language. Ce fichier permet de générer les paramètres du problème (liste de valeurs, liste de masses, masse maximale) pour les 3 niveaux de difficultés.
+Le dossier "given_files" contient un fichier "parameters" pour chaque language.
+Ce fichier permet de générer les paramètres du problème pour les 3 niveaux de difficultés.
+
+La classe Paramètres contient les attributs suivants:
+* itemWeights: liste de N entiers représentant les masses des objets
+* itemValues: liste de N entiers représentant les valeurs des objets
+* maxWeightCapacity: masse maximale à ne pas dépasse
+
+Votre algorithme doit renvoyer 3 valeurs:
+* une liste d'entiers: les indices des objets que vous sélectionnez dans les tableaux. **Cette liste doit être triée en ordre croissant**
+* la somme des valeurs des objets sélectionnés
+* la somme des masses des objets sélectionnés
+
+> Par exemple, si on a
+> itemWeights = [ ]
+> et itemValues = [ ]
+> Alors votre algo renverra
+>
+>
+>
+>
+
 
 > évidemment, les données d'entrée sont les même pour tous les langages.
 
@@ -41,16 +62,18 @@ L'objectif de votre équipe est de marquer **le + de points possibles**. Les poi
 
 |  Categorie | Objectif  |  Points  | 
 | --- | --- | --- | 
-| rapidité | Première équipe à trouver la solution en difficulté "papier stylo"  |  1  |
 | rapidité | Première équipe à trouver la solution en difficulté "easy"  |  1  |
 | rapidité | Première équipe à trouver la solution en difficulté "moyen"  |  1  |
 | rapidité | Première équipe à trouver la solution à 5% près en difficulté "hard"  |  2  |
 | rapidité | Première équipe à trouver la solution en difficulté "hard"  |  3  |
 | algo | Montrer (et expliquer!) un algorithme qui résoud le problème avec une complexité inferieure à O(2^n) | 2
-| performance | Meilleur temps d'éxécution pour la difficulté medium à la fin du challenge | 3
-| performance | Meilleur temps d'éxécution pour la difficulté hard à la fin du challenge | 3
-| ??? | Première équipe à trouver le message caché dans les données du problème 👀 | 5
+| performance | Meilleur temps d'éxécution pour la difficulté medium à la fin du challenge | 2
+| performance | Meilleur temps d'éxécution pour la difficulté hard à la fin du challenge | 2
+| ??? | Première équipe à trouver le message caché 👀 | 5
 
 > pour les objectifs liés à la performance, à vous d'implémenter des fonctions pour mesurer le temps d'éxécution !
 
+
 Le top 3 remportera des prix exclusifs, en plus de l'amour éternel de Julien Guisset 
+
+Leaderboard: https://keepthescore.co/board/czsyxkzjsxcdr/

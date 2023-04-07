@@ -107,8 +107,8 @@ def solve_greedy_mutate_bruteforce(params: Parameters, nTries=10000):
     return bestCombination, bestValue, bestWeight
 
 
-params = Parameters.easy()
-print(solve_recursive(params))
+params = Parameters.hard()
+#print(solve_recursive(params))
 print(solve_greedy(params))
 print(solve_greedy_mutate(params))
 print(solve_greedy_mutate_bruteforce(params, 10000))
@@ -118,3 +118,9 @@ print(solve_greedy_mutate_bruteforce(params, 10000))
 #print(solve_greedy_mutate_bruteforce(data3, 100))
 
 
+# easy:
+# ([1, 8, 4, 0, 3, 5, 6], 28772.0, 19092.0)
+
+
+# medium:
+# ([7, 62, 65, 12, 68, 63, 56, 85, 58, 37, 75, 11, 10, 60, 87, 72, 0, 54, 45, 53, 51, 73, 67, 41, 14, 97, 36, 49, 38, 96, 31], 200475.0, 59392.0)
