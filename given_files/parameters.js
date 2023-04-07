@@ -27,6 +27,4 @@ class Parameters {
     }
 }
 
-console.log(Parameters.easy())
-console.log(Parameters.medium())
-console.log(Parameters.hard())
+console.log(Parameters.easy().itemWeights)
