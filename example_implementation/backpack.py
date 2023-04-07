@@ -106,12 +106,35 @@ def solve_greedy_mutate_bruteforce(params: Parameters, nTries=10000):
             bestWeight = totalWeight
     return bestCombination, bestValue, bestWeight
 
+# https://www.askpython.com/python/examples/knapsack-problem-dynamic-programming
+def solve_dynamic(params: Parameters):#(W, wt, val):
+    W, wt, val = params.maxWeightCapacity, params.itemWeights, params.itemValues
+    n=len(val)
+    table = [[0 for x in range(W + 1)] for x in range(n + 1)] 
+ 
+    for i in range(n + 1): 
+        for j in range(W + 1): 
+            if i == 0 or j == 0: 
+                table[i][j] = 0
+            elif wt[i-1] <= j: 
+                table[i][j] = max(val[i-1] + table[i-1][j-wt[i-1]],  table[i-1][j]) 
+            else: 
+                table[i][j] = table[i-1][j] 
+   
+    return table[n][W] 
+
+#val = [50,100,150,200]
+#wt = [8,16,32,40]
+#W = 64
+ 
+
 
 params = Parameters.hard()
 #print(solve_recursive(params))
 print(solve_greedy(params))
-print(solve_greedy_mutate(params))
-print(solve_greedy_mutate_bruteforce(params, 10000))
+#print(solve_greedy_mutate(params))
+print(solve_greedy_mutate_bruteforce(params))
+print(solve_dynamic(params))
 
 #print(solve_recursive(data3, 100))
 #print(solve_greedy(data3, 100))
