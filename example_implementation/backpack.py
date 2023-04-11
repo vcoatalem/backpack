@@ -104,24 +104,39 @@ def solve_greedy_mutate_bruteforce(params: Parameters, nTries=10000):
             bestValue = totalValue
             bestCombination = res
             bestWeight = totalWeight
+    bestCombination.sort()
     return bestCombination, bestValue, bestWeight
 
 # https://www.askpython.com/python/examples/knapsack-problem-dynamic-programming
 def solve_dynamic(params: Parameters):#(W, wt, val):
     W, wt, val = params.maxWeightCapacity, params.itemWeights, params.itemValues
-    n=len(val)
-    table = [[0 for x in range(W + 1)] for x in range(n + 1)] 
- 
-    for i in range(n + 1): 
-        for j in range(W + 1): 
-            if i == 0 or j == 0: 
+    n = len(val)
+    table = [[0 for x in range(W + 1)] for x in range(n + 1)]
+    selected_items = [[False for x in range(W + 1)] for x in range(n + 1)]
+
+    for i in range(n + 1):
+        for j in range(W + 1):
+            if i == 0 or j == 0:
                 table[i][j] = 0
-            elif wt[i-1] <= j: 
-                table[i][j] = max(val[i-1] + table[i-1][j-wt[i-1]],  table[i-1][j]) 
-            else: 
-                table[i][j] = table[i-1][j] 
-   
-    return table[n][W] 
+            elif wt[i-1] <= j:
+                table[i][j] = max(val[i-1] + table[i-1][j-wt[i-1]], table[i-1][j])
+                if val[i-1] + table[i-1][j-wt[i-1]] > table[i-1][j]:
+                    selected_items[i][j] = True
+            else:
+                table[i][j] = table[i-1][j]
+
+    weight_selected = 0
+    indices_selected = []
+    j = W
+    for i in range(n, 0, -1):
+        if selected_items[i][j]:
+            weight_selected += wt[i-1]
+            indices_selected.append(i-1)
+            j -= wt[i-1]
+
+    indices_selected.sort()
+    return table[n][W], weight_selected, indices_selected
+
 
 #val = [50,100,150,200]
 #wt = [8,16,32,40]
@@ -129,21 +144,24 @@ def solve_dynamic(params: Parameters):#(W, wt, val):
  
 
 
-params = Parameters.hard()
-#print(solve_recursive(params))
-print(solve_greedy(params))
-#print(solve_greedy_mutate(params))
+params = Parameters.easy()
+#print(solve_greedy(params))
 print(solve_greedy_mutate_bruteforce(params))
+#print(solve_dynamic(params))
 print(solve_dynamic(params))
 
-#print(solve_recursive(data3, 100))
-#print(solve_greedy(data3, 100))
-#print(solve_greedy_mutate_bruteforce(data3, 100))
-
-
 # easy:
-# ([1, 8, 4, 0, 3, 5, 6], 28772.0, 19092.0)
+# 28772
+# 19092
+# [0, 1, 3, 4, 5, 6, 8]
 
 
 # medium:
-# ([7, 62, 65, 12, 68, 63, 56, 85, 58, 37, 75, 11, 10, 60, 87, 72, 0, 54, 45, 53, 51, 73, 67, 41, 14, 97, 36, 49, 38, 96, 31], 200475.0, 59392.0)
+# 200475
+# 59392
+# [0, 7, 10, 11, 12, 14, 31, 36, 37, 38, 41, 45, 49, 51, 53, 54, 56, 58, 60, 62, 63, 65, 67, 68, 72, 73, 75, 85, 87, 96, 97]
+
+# hard:
+# 847430
+# 119999
+# [4, 5, 8, 13, 27, 34, 35, 37, 42, 48, 50, 65, 72, 73, 74, 87, 94, 98, 124, 134, 138, 143, 147, 155, 186, 195, 204, 208, 212, 217, 221, 222, 245, 250, 258, 261, 267, 273, 275, 282, 294, 298, 309, 311, 315, 317, 336, 349, 365, 369, 370, 374, 375, 410, 413, 415, 420, 423, 428, 429, 431, 436, 450, 455, 456, 465, 466, 481, 483, 487, 493, 508, 514, 517, 527, 547, 560, 565, 569, 573, 589, 594, 601, 605, 621, 623, 632, 647, 653, 660, 673, 688, 728, 731, 743, 744, 758, 765, 768, 786, 790, 800, 803, 838, 843, 865, 886, 898, 908, 946, 947, 948, 951, 968, 970, 972, 982, 985, 998]

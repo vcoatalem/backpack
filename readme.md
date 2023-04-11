@@ -47,13 +47,14 @@ Votre algorithme doit renvoyer 3 valeurs:
 * la somme des masses des objets sélectionnés
 
 > Par exemple, si on a
-> itemWeights = [ ]
-> et itemValues = [ ]
-> Alors votre algo renverra
->
->
->
->
+> * itemWeights = [ 1, 2, 3, 4, 5 ]
+> * itemValues = [ 5, 4, 3, 2, 1 ]
+> * maxWeight = 6
+
+> Alors votre algo renverra 3 valeurs: 
+> * items: [ 0, 1, 2 ]
+> * value: 12
+> * weight: 6
 
 
 > évidemment, les données d'entrée sont les même pour tous les langages.
